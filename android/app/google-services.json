@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "878101248529",
+    "project_id": "cooking-app-native",
+    "storage_bucket": "cooking-app-native.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:878101248529:android:ac1816a55787c40a470fb0",
+        "android_client_info": {
+          "package_name": "com.cookingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "878101248529-hb6617kov4jl61u3ake1kku8e3ge1f4l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB951waBZdkpSQ0P5F5kXThj5LUrd5lKoQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "878101248529-hb6617kov4jl61u3ake1kku8e3ge1f4l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

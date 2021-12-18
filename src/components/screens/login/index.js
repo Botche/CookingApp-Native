@@ -10,8 +10,8 @@ import styles from './styles';
 import constants from '../../../constants';
 
 function Login(props) {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('test1@example.com');
+    const [password, setPassword] = useState('test1@example.com');
     const [emailErrorMessage, setEmailErrorMessage] = useState('');
     const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
 

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { ThemeProvider } from 'react-native-elements';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
 import Login from '../screens/login';
 import Register from '../screens/register';
+import Recipes from '../screens/recipes';
+import Recipe from '../screens/recipe';
 
 import constants from '../../constants';
 
@@ -16,16 +17,19 @@ function App(props) {
   const screenList = userId ? (
     <>
       <Stack.Screen name={constants.screens.recipes} options={{ header: () => null }} >
-        {props => <Recipices {...props} userId={userId} />}
+        {props => <Recipes {...props} userId={userId} />}
+      </Stack.Screen>
+      <Stack.Screen name={constants.screens.recipe} >
+        {props => <Recipe {...props} userId={userId} />}
       </Stack.Screen>
     </>
   ) : (
     <>
-      <Stack.Screen name={constants.screens.register} options={{ header: () => null }}>
-        {props => <Register {...props} />}
-      </Stack.Screen>
       <Stack.Screen name={constants.screens.login} options={{ header: () => null }}>
         {props => <Login {...props} setUserId={setUserId} />}
+      </Stack.Screen>
+      <Stack.Screen name={constants.screens.register} options={{ header: () => null }}>
+        {props => <Register {...props} />}
       </Stack.Screen>
     </>
 

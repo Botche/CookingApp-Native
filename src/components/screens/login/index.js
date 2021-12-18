@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import auth from '@react-native-firebase/auth';
+import PropTypes from 'prop-types';
 
 import FormInput from '../../ui/formInput'
 import FormButton from '../../ui/formButton';
@@ -14,7 +15,6 @@ function Login(props) {
     const [emailErrorMessage, setEmailErrorMessage] = useState('');
     const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
 
-    // props.navigation.navigate(screens.login)
     const navigateToRegistrationScreen = () => {
         props.navigation.navigate(constants.screens.register);
     }
@@ -90,5 +90,9 @@ function Login(props) {
         </View>
     );
 }
+
+Login.propTypes = {
+    setUserId: PropTypes.func.isRequired,
+};
 
 export default Login;

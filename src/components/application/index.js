@@ -16,10 +16,13 @@ function App(props) {
 
   const screenList = userId ? (
     <>
-      <Stack.Screen name={constants.screens.recipes} options={{ header: () => null }} >
+      <Stack.Screen name={constants.screens.recipes} >
         {props => <Recipes {...props} userId={userId} />}
       </Stack.Screen>
       <Stack.Screen name={constants.screens.recipe} >
+        {props => <Recipe {...props} userId={userId} />}
+      </Stack.Screen>
+      <Stack.Screen name={constants.screens.createRepice} >
         {props => <Recipe {...props} userId={userId} />}
       </Stack.Screen>
     </>

@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { Text, View, Image } from 'react-native';
 import { ScrollView, TouchableHighlight } from 'react-native-gesture-handler';
 
-import BackButton from "../../ui/backButton";
+import IconButton from '../../ui/iconButton';
 
 import firebaseContext from '../../../database/firebaseContext';
 
@@ -24,10 +24,11 @@ function Recipe(props) {
             title: '',
             headerTransparent: "true",
             headerLeft: () => (
-                <BackButton
+                <IconButton
                     onPress={() => {
                         props.navigation.goBack();
                     }}
+                    icon={constants.icons.backArrow}
                 />
             ),
             headerRight: () => <View />,

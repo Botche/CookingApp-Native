@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { Text, View, Image } from 'react-native';
 import { FlatList, TouchableHighlight } from 'react-native-gesture-handler';
+
+import IconButton from '../../ui/iconButton';
 
 import styles from './styles';
 import constants from '../../../constants';
@@ -14,9 +16,25 @@ function Recipes(props) {
     useEffect(() => {
         if (recipes.length == 0) {
             getRecipes();
-            getCategories(); 
+            getCategories();
         }
     }, [recipes]);
+
+    useLayoutEffect(() => {
+        props.navigation.setOptions({
+            title: '',
+            headerTransparent: "true",
+            headerLeft: () => <View />,
+            headerRight: () => (
+                <IconButton
+                    onPress={() => {
+                        props.navigation.navigate(constants.screens.createRecipe);
+                    }}
+                    icon={constants.icons.createIcon}
+                />
+            )
+        }, []);
+    });
 
     const getRecipes = () => {
         const databaseRef = firebaseContext.getDatabaseReference("recipes");
@@ -34,7 +52,7 @@ function Recipes(props) {
             setRecipes(recipesCollection);
         });
     };
-    
+
     const getCategories = () => {
         const databaseRef = firebaseContext.getDatabaseReference("categories");
 
@@ -79,12 +97,12 @@ function Recipes(props) {
             <Text style={styles.header}>Recipes</Text>
 
             <FlatList
-                vertical 
-                showsVerticalScrollIndicator={false} 
-                numColumns={2} 
-                data={recipes} 
-                renderItem={renderRecipes} 
-                keyExtractor={(item) => `${item.id}`} 
+                vertical
+                showsVerticalScrollIndicator={false}
+                numColumns={2}
+                data={recipes}
+                renderItem={renderRecipes}
+                keyExtractor={(item) => `${item.id}`}
             />
         </View>
     );

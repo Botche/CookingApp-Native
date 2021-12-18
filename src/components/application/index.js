@@ -8,6 +8,7 @@ import Recipes from '../screens/recipes';
 import Recipe from '../screens/recipe';
 
 import constants from '../../constants';
+import CreateRecipe from '../screens/createRecipe';
 
 const Stack = createStackNavigator();
 
@@ -23,7 +24,7 @@ function App(props) {
         {props => <Recipe {...props} userId={userId} />}
       </Stack.Screen>
       <Stack.Screen name={constants.screens.createRepice} >
-        {props => <Recipe {...props} userId={userId} />}
+        {props => <CreateRecipe {...props} userId={userId} />}
       </Stack.Screen>
     </>
   ) : (

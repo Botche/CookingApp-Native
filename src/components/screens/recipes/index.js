@@ -28,7 +28,7 @@ function Recipes(props) {
             headerRight: () => (
                 <IconButton
                     onPress={() => {
-                        props.navigation.navigate(constants.screens.createRecipe);
+                        props.navigation.navigate(constants.screens.createRepice);
                     }}
                     icon={constants.icons.createIcon}
                 />

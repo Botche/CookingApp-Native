@@ -60,10 +60,10 @@ const styles = StyleSheet.create({
     color: '#2cd18a'
   },
   infoDescriptionRecipe: {
-    textAlign: 'left',
     fontSize: 16,
     marginTop: 30,
-    margin: 15
+    margin: 15,
+    width: '80%',
   },
   infoRecipeName: {
     fontSize: 28,
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
     textAlign: 'center'
-  }
+  },
 });
 
 export default styles;

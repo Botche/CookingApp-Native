@@ -63,10 +63,14 @@ function Recipe(props) {
 
     const deleteRecipe = () => {
         const databaseRef = firebaseContext.getDatabaseReference(`recipes/${item.id}`);
-        
-        databaseRef.remove();
 
-        props.navigation.navigate(constants.screens.recipes);
+        try {
+            databaseRef.remove();
+
+            props.navigation.navigate(constants.screens.recipes);
+        } catch (error) {
+            console.log(error.message);
+        }
     };
 
     const getDeleteButton = () => {
@@ -105,10 +109,9 @@ function Recipe(props) {
                     <Text style={styles.ingredientsHeader}>Ingredients list:</Text>
                     {Object.keys(item.ingredients).map((ingredientId) => (
                         <View key={ingredientId}>
-                            <Text style={styles.ingredientsName}>- {item.ingredients[ingredientId].name}</Text>
+                            <Text style={styles.ingredientsName}>- {item.ingredients[ingredientId]}</Text>
                         </View>
-                    )
-                    )}
+                    ))}
                 </View>
                 <View style={styles.infoContainer}>
                     <Text>Description:</Text>

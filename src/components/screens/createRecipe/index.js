@@ -14,8 +14,8 @@ import firebaseContext from '../../../database/firebaseContext';
 
 function CreateRecipe(props) {
     const [description, setDescription] = useState('');
+    const [ingredientsArray, setIngredientsArray] = useState('');
     const [ingredients, setIngredients] = useState('');
-    const [ingredientsErrorMessage, setIngredientsErrorMessage] = useState('');
     const [photoUrl, setPhotoUrl] = useState('');
     const [photoUrlErrorMessage, setPhotoUrlErrorMessage] = useState('');
     const [time, setTime] = useState('');
@@ -54,18 +54,24 @@ function CreateRecipe(props) {
             return;
         }
 
-        const databaseRef = firebaseContext.getDatabaseReference('recipes');
+        try {
+            const databaseRef = firebaseContext.getDatabaseReference('recipes');
 
-        databaseRef.push()
-            .set({
-                title: title,
-                categoryId: value,
-                photo_url: photoUrl,
-                ingredients: ingredients,
-                time: time,
-                description: description,
-                author_id: props.userId,
-            });
+            databaseRef.push()
+                .set({
+                    title: title,
+                    categoryId: value,
+                    photo_url: photoUrl,
+                    ingredients: ingredientsArray,
+                    time: time,
+                    description: description,
+                    author_id: props.userId,
+                });
+
+            props.navigation.navigate(constants.screens.recipes);
+        } catch (error) {
+            console.log(error.message)
+        }
     };
 
     const checkValidation = () => {
@@ -90,14 +96,18 @@ function CreateRecipe(props) {
             setPhotoUrlErrorMessage('Photo url must be valid!');
         }
 
-        if (ingredients == '') {
-            isValid = false;
-            setIngredientsErrorMessage('Ingredients are required!');
-        }
-
         if (time == '') {
             isValid = false;
             setTimeErrorMessage('Time is required!');
+        }
+
+        let ingredientsByComma = ingredients
+            .split(',')
+            .map(ingredient => ingredient.trim());
+        if (ingredientsByComma.length == 0) {
+            isValid = false;
+        } else {
+            setIngredientsArray(ingredientsByComma);
         }
 
         return isValid;
@@ -158,7 +168,7 @@ function CreateRecipe(props) {
                         labelText="Ingredients"
                         inputValue={ingredients}
                         onChangeText={setIngredients}
-                        inputError={ingredientsErrorMessage}
+                        inputError="The ingredients should be separate by comma"
                     />
 
                     <FormInput

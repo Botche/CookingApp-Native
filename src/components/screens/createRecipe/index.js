@@ -23,8 +23,8 @@ function CreateRecipe(props) {
     const [title, setTitle] = useState('');
     const [titleErrorMessage, setTitleErrorMessage] = useState('');
 
-    const [open, setOpen] = useState(false);
-    const [value, setValue] = useState(null);
+    const [openCategoryDropdown, setOpenCategoryDropdown] = useState(false);
+    const [categoryValue, setCategoryValue] = useState(null);
     const [categories, setCategories] = useState([]);
 
     useLayoutEffect(() => {
@@ -60,7 +60,7 @@ function CreateRecipe(props) {
             databaseRef.push()
                 .set({
                     title: title,
-                    categoryId: value,
+                    categoryId: categoryValue,
                     photo_url: photoUrl,
                     ingredients: ingredientsArray,
                     time: time,
@@ -98,6 +98,10 @@ function CreateRecipe(props) {
         if (time === '') {
             isValid = false;
             setTimeErrorMessage(constants.exceptionMessages.timeRequired);
+        }
+
+        if (categoryValue === null) {
+            isValid = false;
         }
 
         let ingredientsByComma = ingredients
@@ -146,11 +150,11 @@ function CreateRecipe(props) {
                     <View style={styles.categoryContainer}>
                         <Text>Category</Text>
                         <DropDownPicker
-                            open={open}
-                            value={value}
+                            open={openCategoryDropdown}
+                            value={categoryValue}
                             items={categories}
-                            setOpen={setOpen}
-                            setValue={setValue}
+                            setOpen={setOpenCategoryDropdown}
+                            setValue={setCategoryValue}
                             setItems={setCategories}
                             listMode="SCROLLVIEW"
                         />

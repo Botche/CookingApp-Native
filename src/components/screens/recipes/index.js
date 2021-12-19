@@ -1,6 +1,7 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { Text, View, Image } from 'react-native';
 import { FlatList, TouchableHighlight } from 'react-native-gesture-handler';
+import auth from '@react-native-firebase/auth';
 
 import IconButton from '../../ui/iconButton';
 
@@ -24,7 +25,15 @@ function Recipes(props) {
         props.navigation.setOptions({
             title: '',
             headerTransparent: "true",
-            headerLeft: () => <View />,
+            headerLeft: () => (
+                <IconButton
+                    onPress={() => {
+                        auth().signOut();
+                        props.setUserId('');
+                    }}
+                    icon={constants.icons.logount}
+                />
+            ),
             headerRight: () => (
                 <IconButton
                     onPress={() => {

@@ -18,7 +18,7 @@ function App(props) {
   const screenList = userId ? (
     <>
       <Stack.Screen name={constants.screens.recipes} >
-        {props => <Recipes {...props} userId={userId} />}
+        {props => <Recipes {...props} userId={userId} setUserId={setUserId} />}
       </Stack.Screen>
       <Stack.Screen name={constants.screens.recipe} >
         {props => <Recipe {...props} userId={userId} />}

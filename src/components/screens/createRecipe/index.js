@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
-import { Text, View, Image } from 'react-native';
-import { FlatList, ScrollView, TouchableHighlight } from 'react-native-gesture-handler';
+import { Text, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 import IconButton from '../../ui/iconButton';
@@ -77,34 +77,33 @@ function CreateRecipe(props) {
     const checkValidation = () => {
         setTitleErrorMessage('');
         setPhotoUrlErrorMessage('');
-        setIngredientsErrorMessage('');
         setTimeErrorMessage('');
 
         let isValid = true;
-        if (title == '') {
+        if (title === '') {
             isValid = false;
-            setTitleErrorMessage('Title is required!');
+            setTitleErrorMessage(constants.exceptionMessages.titleRequired);
         }
 
-        if (photoUrl == '') {
+        if (photoUrl === '') {
             isValid = false;
-            setPhotoUrlErrorMessage('Photo url is required!');
+            setPhotoUrlErrorMessage(constants.exceptionMessages.photoUrlRequired);
         }
 
         if (photoUrl.startsWith('http') == false) {
             isValid = false;
-            setPhotoUrlErrorMessage('Photo url must be valid!');
+            setPhotoUrlErrorMessage(constants.exceptionMessages.photoUrlInvalid);
         }
 
-        if (time == '') {
+        if (time === '') {
             isValid = false;
-            setTimeErrorMessage('Time is required!');
+            setTimeErrorMessage(constants.exceptionMessages.timeRequired);
         }
 
         let ingredientsByComma = ingredients
             .split(',')
             .map(ingredient => ingredient.trim());
-        if (ingredientsByComma.length == 0) {
+        if (ingredientsByComma.length === 0) {
             isValid = false;
         } else {
             setIngredientsArray(ingredientsByComma);

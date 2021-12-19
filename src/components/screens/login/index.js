@@ -25,13 +25,13 @@ function Login(props) {
             setPasswordErrorMessage('');
 
 
-            if (email == '') {
-                setEmailErrorMessage('Email is required!');
+            if (email === '') {
+                setEmailErrorMessage(constants.exceptionMessages.emailRequired);
                 return;
             }
 
-            if (password == '') {
-                setPasswordErrorMessage('Password is required!');
+            if (password === '') {
+                setPasswordErrorMessage(constants.exceptionMessages.passwordRequired);
                 return;
             }
 
@@ -40,17 +40,17 @@ function Login(props) {
             props.setUserId(response.user.uid);
         } catch (error) {
             switch(error.code) {
-                case 'auth/invalid-email':
-                    setEmailErrorMessage('Email is not valid!');
+                case constants.firebaseErrorCodes.authInvalidEmail:
+                    setEmailErrorMessage(constants.exceptionMessages.emailInvalid);
                     break;
-                case 'auth/wrong-password':
-                    setPasswordErrorMessage('Password is incorrect!');
+                case constants.firebaseErrorCodes.authWrongPassword:
+                    setPasswordErrorMessage(constants.exceptionMessages.passwordIsWrong);
                     break;
-                case 'auth/user-not-found':
-                    setEmailErrorMessage('User with such credentials does not exist!');
+                case constants.firebaseErrorCodes.authUserNotFound:
+                    setEmailErrorMessage(constants.exceptionMessages.userNotFound);
                     break;
-                case 'auth/too-many-requests':
-                    setEmailErrorMessage('Too many bad attemps, please try again later!');
+                case constants.firebaseErrorCodes.authTooManyAttempts:
+                    setEmailErrorMessage(constants.exceptionMessages.tooManyAttempts);
                     break;
             }
         }

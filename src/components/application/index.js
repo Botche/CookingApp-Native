@@ -6,9 +6,9 @@ import Login from '../screens/login';
 import Register from '../screens/register';
 import Recipes from '../screens/recipes';
 import Recipe from '../screens/recipe';
+import CreateRecipe from '../screens/createRecipe';
 
 import constants from '../../constants';
-import CreateRecipe from '../screens/createRecipe';
 
 const Stack = createStackNavigator();
 

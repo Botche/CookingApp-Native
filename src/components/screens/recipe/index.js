@@ -5,10 +5,10 @@ import { ScrollView, TouchableHighlight } from 'react-native-gesture-handler';
 import IconButton from '../../ui/iconButton';
 import FormButton from '../../ui/formButton';
 
-import firebaseContext from '../../../database/firebaseContext';
-
 import constants from '../../../constants';
 import styles from './styles';
+
+import firebaseContext from '../../../database/firebaseContext';
 
 function Recipe(props) {
     const item = props.route.params?.item;

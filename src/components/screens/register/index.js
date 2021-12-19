@@ -27,38 +27,38 @@ function Register(props) {
             setRepeatPasswordErrorMessage('');
 
 
-            if (email == '') {
-                setEmailErrorMessage('Email is required!');
+            if (email === '') {
+                setEmailErrorMessage(constants.exceptionMessages.emailRequired);
                 return;
             }
 
-            if (password == '') {
-                setPasswordErrorMessage('Password is required!');
+            if (password === '') {
+                setPasswordErrorMessage(constants.exceptionMessages.passwordRequired);
                 return;
             }
 
-            if (password != repeatPassword) {
-                setRepeatPasswordErrorMessage('Passwords must match!');
+            if (password !== repeatPassword) {
+                setRepeatPasswordErrorMessage(constants.exceptionMessages.passwordMustMatch);
             }
 
             await auth().createUserWithEmailAndPassword(email, password);
             navigateToLoginScreen();
         } catch (error) {
             switch (error.code) {
-                case 'auth/invalid-email':
-                    setEmailErrorMessage('Email is not valid!');
+                case constants.firebaseErrorCodes.authInvalidEmail:
+                    setEmailErrorMessage(constants.exceptionMessages.emailInvalid);
                     break;
-                case 'auth/email-already-in-use':
-                    setEmailErrorMessage('Email is already used!');
+                case constants.firebaseErrorCodes.authEmailAreadyInUse:
+                    setEmailErrorMessage(constants.exceptionMessages.emailAlreadyUsed);
                     break;
-                case 'auth/wrong-password':
-                    setPasswordErrorMessage('Password is incorrect!');
+                case constants.firebaseErrorCodes.authWrongPassword:
+                    setPasswordErrorMessage(constants.exceptionMessages.passwordIsWrong);
                     break;
-                case 'auth/weak-password':
-                    setPasswordErrorMessage('Password should be at least 6 characters!');
+                case constants.firebaseErrorCodes.authWeakPassword:
+                    setPasswordErrorMessage(constants.exceptionMessages.passwordWeak);
                     break;
-                case 'auth/too-many-requests':
-                    setEmailErrorMessage('Too many bad attemps, please try again later!');
+                case constants.firebaseErrorCodes.authTooManyAttempts:
+                    setEmailErrorMessage(constants.exceptionMessages.tooManyAttempts);
                     break;
             }
         }

@@ -3,6 +3,7 @@ import { Text, View, Image } from 'react-native';
 import { ScrollView, TouchableHighlight } from 'react-native-gesture-handler';
 
 import IconButton from '../../ui/iconButton';
+import FormButton from '../../ui/formButton';
 
 import firebaseContext from '../../../database/firebaseContext';
 
@@ -60,6 +61,28 @@ function Recipe(props) {
         }
     }
 
+    const deleteRecipe = () => {
+        const databaseRef = firebaseContext.getDatabaseReference(`recipes/${item.id}`);
+        
+        databaseRef.remove();
+
+        props.navigation.navigate(constants.screens.recipes);
+    };
+
+    const getDeleteButton = () => {
+        let deleteButton = null;
+        if (item.author_id == props.userId) {
+            deleteButton = (
+                <FormButton
+                    text="Delete"
+                    onPressFunc={deleteRecipe}
+                />
+            );
+        }
+
+        return deleteButton;
+    }
+
     return (
         <ScrollView style={styles.container}>
             <View style={styles.infoRecipeContainer}>
@@ -92,6 +115,8 @@ function Recipe(props) {
                     <Text style={styles.infoDescriptionRecipe}>{item.description}</Text>
                 </View>
             </View>
+
+            {getDeleteButton()}
         </ScrollView>
     );
 }

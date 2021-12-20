@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SafeAreaView } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -18,13 +19,23 @@ function App(props) {
   const screenList = userId ? (
     <>
       <Stack.Screen name={constants.screens.recipes} >
-        {props => <Recipes {...props} userId={userId} setUserId={setUserId} />}
+        {props => (
+          <SafeAreaView>
+            <Recipes {...props} userId={userId} setUserId={setUserId} />
+          </SafeAreaView>
+        )}
       </Stack.Screen>
       <Stack.Screen name={constants.screens.recipe} >
-        {props => <Recipe {...props} userId={userId} />}
+        {props => (
+          <SafeAreaView> <Recipe {...props} userId={userId} />
+          </SafeAreaView>
+        )}
       </Stack.Screen>
       <Stack.Screen name={constants.screens.createRepice} >
-        {props => <CreateRecipe {...props} userId={userId} />}
+        {props => (
+          <SafeAreaView> <CreateRecipe {...props} userId={userId} />
+          </SafeAreaView>
+        )}
       </Stack.Screen>
     </>
   ) : (

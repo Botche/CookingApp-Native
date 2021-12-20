@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { Platform } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
@@ -9,8 +10,14 @@ const styles = StyleSheet.create({
     },
     categoryContainer: {
         marginBottom: 20,
-        position: "relative",
-        zIndex: 100,
+        ...Platform.select({
+            ios: {
+                position: "relative",
+                zIndex: 100,
+            },
+            android: {
+            },
+        }),
     },
     header: {
         fontSize: 24,

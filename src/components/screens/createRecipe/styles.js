@@ -9,6 +9,8 @@ const styles = StyleSheet.create({
     },
     categoryContainer: {
         marginBottom: 20,
+        position: "relative",
+        zIndex: 100,
     },
     header: {
         fontSize: 24,
